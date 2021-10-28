@@ -1,0 +1,94 @@
+package dqp.qa.testcases;
+
+import org.testng.annotations.Test;
+
+import dqp.qa.base.TestBase;
+import dqp.qa.pages.CreateProfilingMeasurePage;
+import dqp.qa.pages.HomePage;
+import dqp.qa.pages.LoginPage;
+import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.JavascriptExecutor;
+import org.testng.annotations.AfterMethod;
+
+public class CreateProfilingMeasureTest extends TestBase{
+	
+	LoginPage loginpage;
+	HomePage homepage;
+	CreateProfilingMeasurePage createPorfilingMeasure; 
+	
+	public CreateProfilingMeasureTest() {
+		super();
+	}
+	    
+  @BeforeMethod
+  public void setup() throws InterruptedException {
+		initialization();
+		
+	loginpage = new LoginPage();
+	homepage = new LoginPage().login(prop.getProperty("username"), prop.getProperty("password"));
+	Thread.sleep(5000);
+	createPorfilingMeasure = new CreateProfilingMeasurePage();
+	
+	}
+  	 
+	 @Test(priority = 0) 
+	 public void verifyMesureData() throws InterruptedException { 
+		 
+		 Thread.sleep(12000);
+		 
+		 createPorfilingMeasure.validateMeasureTab();  Thread.sleep(9000);
+	 
+		 createPorfilingMeasure.validateCreateMeasure();  Thread.sleep(5000);
+		 		 		 
+		 createPorfilingMeasure.validateMesureType();Thread.sleep(8000);
+		 
+		 createPorfilingMeasure.validateMesureName(); Thread.sleep(5000);
+		 createPorfilingMeasure.validateOrganization(); Thread.sleep(5000);
+		 createPorfilingMeasure.validateNextButton(); Thread.sleep(9000);
+		 		 
+		 createPorfilingMeasure.addSourceName(); Thread.sleep(9000);
+		 
+		 createPorfilingMeasure.clickCheckButton(); Thread.sleep(9000);
+	
+		 createPorfilingMeasure.validateDatasource(); Thread.sleep(5000);
+		 createPorfilingMeasure.validateSelectsource(); Thread.sleep(7000);
+		 createPorfilingMeasure.validateDatabase(); Thread.sleep(5000);
+		 createPorfilingMeasure.validateSelectdatabase(); Thread.sleep(8000);
+		 createPorfilingMeasure.validateTable(); Thread.sleep(5000);
+		 createPorfilingMeasure.validateSelecttable(); Thread.sleep(12000);
+		 
+		 createPorfilingMeasure.validateAddSourceColumn(); Thread.sleep(10000);
+		 
+		 createPorfilingMeasure.validateSelectColumn(); Thread.sleep(13000);
+		 createPorfilingMeasure.validateAddSelectButton(); Thread.sleep(10000);
+			
+		 createPorfilingMeasure.validateSourceNextButton(); Thread.sleep(10000);
+		 
+		 JavascriptExecutor jss = (JavascriptExecutor) driver;
+		 jss.executeScript("window.scrollBy(0,1600)", "");
+		 
+		 createPorfilingMeasure.validateSelectRule(); Thread.sleep(10000);
+		 createPorfilingMeasure.validateTotalCountValue(); Thread.sleep(10000);
+		 		 
+		 createPorfilingMeasure.validateSelectPlusIcon(); Thread.sleep(10000);
+		 
+		
+		JavascriptExecutor jsss = (JavascriptExecutor) driver;
+		 jsss.executeScript("window.scrollBy(0,1600)", "");
+		 
+		 createPorfilingMeasure.validateSourcenextbutton(); Thread.sleep(5000);
+		 createPorfilingMeasure.validateSubmitButton(); Thread.sleep(9000);
+		 createPorfilingMeasure.validateSuccessfulPopup(); Thread.sleep(5000);
+		 	
+}
+	 /*
+		 * JavascriptExecutor js = (JavascriptExecutor) driver;
+		 * js.executeScript("window.scrollBy(0,1600)", "");
+	 */
+		
+  @AfterMethod
+  public void closeBrowser() {
+	  driver.quit();
+  }
+
+}
